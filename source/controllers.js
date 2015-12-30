@@ -5,15 +5,12 @@
  * @see services
  */
 
-var controllers = angular.module('ExampleApp.controllers', []);
+var controllers = angular.module('ExampleApp.controllers', ['ngCart']);
 
-controllers.controller('ExampleController', ['$scope', '$http',
-  function ($scope, $http) {
-    $http.get('/example').success(function(data) {
-      $scope.example = data[0].name;
-    });
-
-    $scope.orderProp = 'age';
+controllers.controller('ExampleController', ['$scope', '$http','ngCart',
+  function ($scope, $http, ngCart) {
+    ngCart.setTaxRate(7.5);
+    ngCart.setShipping(2.99);
   }]);
 
 controllers.controller('ExampleDetailController', ['$scope', '$routeParams',
